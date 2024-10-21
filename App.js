@@ -31,8 +31,8 @@ export default function App() {
           title:"Pick A Flick"
         }}
         />
-        <Drawer.Screen name="jonour" component={Jonour} />
-        <Drawer.Screen name="jonourmovies" component={JonourMovies} />
+        <Drawer.Screen name="Genre" component={Jonour} />
+        <Drawer.Screen name="GenreMovies" component={JonourMovies} />
       </Drawer.Navigator>
     </NavigationContainer>
   );
