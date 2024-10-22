@@ -10,7 +10,7 @@ const MovieCarousel = () => {
     <View style={styles.carouselContainer}>
       <Carousel
         loop
-        width={width * 0.9} // Slightly smaller width
+        width={width * 0.7} // Slightly smaller width
         height={height * 0.4}
         autoPlay={true}
         autoPlayInterval={2000}

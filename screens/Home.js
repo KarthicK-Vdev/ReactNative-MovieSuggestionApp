@@ -1,14 +1,47 @@
-import { View, Text, StyleSheet, ScrollView, FlatList, Image } from 'react-native';
-import React from 'react';
+import { View, Text, StyleSheet, ScrollView, FlatList, Image, Pressable } from 'react-native';
+import React, { useState } from 'react';
 import { MovieData } from '../Data/MovieData';
 import MovieCarousel from '../components/MovieCarousel';
+import AntDesign from '@expo/vector-icons/AntDesign';
+import { useDispatch, useSelector } from 'react-redux';
+import { addList, removeList } from '../store/slice';
 
 const Home = () => {
+  const dispatch =  useDispatch()
+  const wishList = useSelector((state)=>state.wishList)
+
+  const addToWishList=(item)=>{
+    const {id, name, image}=item;
+    const wishListItem={
+      id:id,
+      name:name,
+      image:image,
+      isWishList:true,
+    }
+    dispatch(addList(wishListItem))
+  }
+  const removeFromWishList = (item)=>{
+    dispatch(removeList(item.id))
+  }
+  
   const renderMovieList = ({ item }) => {
+    let isInWishList;
+    if(wishList)
+    {
+      isInWishList = wishList.some((wishItem)=>wishItem.id===item.id)
+    }
+    else
+    {
+      isInWishList=false
+    }
+    // console.log(isInWishList)
     return (
       <View style={styles.popularMovieCard}>
         <Image style={styles.popularMovieImage} source={{ uri: item.image }} />
         <Text style={styles.popularMovieName}>{item.name}</Text>
+        <Pressable onPress={()=> !isInWishList ? addToWishList(item) : removeFromWishList(item)}>
+          <AntDesign name={isInWishList ? "heart" : "hearto"} size={24} color={isInWishList ? "red" : "white"} />
+        </Pressable>
       </View>
     );
   };
@@ -32,10 +65,11 @@ const Home = () => {
               showsHorizontalScrollIndicator={false}
             />
           </View>
-
-          {/* Movie Carousel */}
-          <View style={styles.carouselWrapper}>
-            <MovieCarousel />
+          <View style={styles.carouselContainer}>
+              <Text style={styles.popular}>Our Movies</Text>
+            <View style={styles.carouselWrapper}>
+              <MovieCarousel />
+            </View>
           </View>
         </View>
       </View>
@@ -65,6 +99,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 15,
   },
   popular: {
+    margin:5,
     color: 'gray',
     fontSize: 15,
     fontWeight: '700',
@@ -92,9 +127,12 @@ const styles = StyleSheet.create({
     padding: 5,
   },
   carouselWrapper: {
-    height: 300, // Defined height for carousel
-    justifyContent: 'center', // Center the carousel vertically
-    alignItems: 'center',    // Center the carousel horizontally
+    height: 300, 
+    justifyContent: 'center', 
+    alignItems: 'center',    
     marginTop: 20,
   },
+  carouselContainer:{
+    marginTop:30,
+  }
 });
