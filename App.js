@@ -2,14 +2,33 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import { StatusBar } from 'expo-status-bar';
 import {  Text, View } from 'react-native';
 import Home from './screens/Home';
-import Jonour from './screens/Jonour';
-import JonourMovies from './screens/JonourMovies';
+import Genre from './screens/Genre';
+import GenreMovies from './screens/GenreMovies';
 import { NavigationContainer } from '@react-navigation/native';
 import { Provider } from 'react-redux';
 import store from './store/slice';
 import WishList from './screens/WishList';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 const Drawer = createDrawerNavigator();
+const Stack = createNativeStackNavigator();
+
+const GenreSection=()=>{
+  return(
+    <Stack.Navigator 
+    screenOptions={{
+      headerStyle:{backgroundColor:"rgb(60, 60, 60)"},
+      headerTintColor:"white",
+      contentStyle:{backgroundColor:"black"}
+    }}
+    >
+      <Stack.Screen name='GenreList' component={Genre} 
+      options={{headerShown:false}}
+      />
+      <Stack.Screen name='GenreMovies' component={GenreMovies} />
+    </Stack.Navigator>
+  )
+}
 
 export default function App() {
   return (
@@ -36,8 +55,7 @@ export default function App() {
             title:"Pick A Flick"
           }}
           />
-          <Drawer.Screen name="Genre" component={Jonour} />
-          <Drawer.Screen name="GenreMovies" component={JonourMovies} />
+          <Drawer.Screen name='Genre' component={GenreSection} />
           <Drawer.Screen name='WishList' component={WishList} />
         </Drawer.Navigator>
       </NavigationContainer>
