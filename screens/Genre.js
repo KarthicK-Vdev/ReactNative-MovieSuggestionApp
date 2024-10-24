@@ -20,14 +20,16 @@ const Genre = ({navigation}) => {
 
   return (
     <View style={styles.genreContainer}>
-      <FlatList
-        data={GenreData}
-        keyExtractor={(item) => item.id}
-        numColumns={2}
-        renderItem={renderGenreList}
-        columnWrapperStyle={styles.row}
-        showsVerticalScrollIndicator={false}
-      />
+      <View style={styles.genreSubContainer}>
+        <FlatList
+          data={GenreData}
+          keyExtractor={(item) => item.id}
+          renderItem={renderGenreList}
+          showsVerticalScrollIndicator={false}
+          // numColumns={1}
+          // columnWrapperStyle={styles.row}
+        />
+      </View>
     </View>
   );
 };
@@ -39,7 +41,11 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    paddingVertical: 20, // Adjust as needed for padding
+    paddingVertical: 20, //+ Adjust as needed for padding
+  },
+  genreSubContainer:{
+    width:"70%",
+    height:"100%"
   },
   genreCard: {
     backgroundColor: '#333',
@@ -47,12 +53,13 @@ const styles = StyleSheet.create({
     paddingVertical: 20,
     paddingHorizontal: 10,
     marginVertical: 10,
-    width: '45%', // Make sure the card takes approximately half the width
+    width: "100%", // Make sure the card takes approximately half the width
     alignItems: 'center',
+    justifyContent:"center"
   },
   genreText: {
     color: 'white',
-    fontSize: 16,
+    fontSize: 20,
     fontWeight: 'bold',
     textAlign: 'center',
   },

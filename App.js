@@ -9,6 +9,7 @@ import { Provider } from 'react-redux';
 import store from './store/slice';
 import WishList from './screens/WishList';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import AllMovies from './screens/AllMovies';
 
 const Drawer = createDrawerNavigator();
 const Stack = createNativeStackNavigator();
@@ -57,6 +58,7 @@ export default function App() {
           />
           <Drawer.Screen name='Genre' component={GenreSection} />
           <Drawer.Screen name='WishList' component={WishList} />
+          <Drawer.Screen name='AllMovies' component={AllMovies} />
         </Drawer.Navigator>
       </NavigationContainer>
     </Provider>

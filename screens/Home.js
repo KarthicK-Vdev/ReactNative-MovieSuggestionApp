@@ -6,6 +6,7 @@ import AntDesign from '@expo/vector-icons/AntDesign';
 import { useDispatch, useSelector } from 'react-redux';
 import { addList, removeList } from '../store/slice';
 
+
 const Home = () => {
   const dispatch =  useDispatch()
   const wishList = useSelector((state)=>state.wishList)
@@ -24,7 +25,10 @@ const Home = () => {
     dispatch(removeList(item.id))
   }
   
-  const renderMovieList = ({ item }) => {
+  const renderPopularMovieList = ({ item }) => {
+    // const popularList= item.filter((item)=>item.section==="popular")
+    // console.log(popularList)
+    
     let isInWishList;
     if(wishList)
     {
@@ -35,14 +39,47 @@ const Home = () => {
       isInWishList=false
     }
     // console.log(isInWishList)
-    return (
+    return ( item.section==="popular" && (
       <View style={styles.popularMovieCard}>
         <Image style={styles.popularMovieImage} source={{ uri: item.image }} />
         <Text style={styles.popularMovieName}>{item.name}</Text>
-        <Pressable onPress={()=> !isInWishList ? addToWishList(item) : removeFromWishList(item)}>
-          <AntDesign name={isInWishList ? "heart" : "hearto"} size={24} color={isInWishList ? "red" : "white"} />
-        </Pressable>
+        <View style={styles.footerSection}>
+          <Text style={styles.footerSectionText}><AntDesign name="star" size={20} color="green" /> {item.rating}</Text>
+          <Pressable onPress={()=> !isInWishList ? addToWishList(item) : removeFromWishList(item)}>
+            <AntDesign name={isInWishList ? "heart" : "hearto"} size={24} color={isInWishList ? "red" : "white"} />
+          </Pressable>
+        </View>
       </View>
+    )
+    );
+  };
+
+  const renderRecentMovieList = ({ item }) => {
+    // const popularList= item.filter((item)=>item.section==="popular")
+    // console.log(popularList)
+    
+    let isInWishList;
+    if(wishList)
+    {
+      isInWishList = wishList.some((wishItem)=>wishItem.id===item.id)
+    }
+    else
+    {
+      isInWishList=false
+    }
+    // console.log(isInWishList)
+    return ( item.section==="recent" && (
+      <View style={styles.popularMovieCard}>
+        <Image style={styles.popularMovieImage} source={{ uri: item.image }} />
+        <Text style={styles.popularMovieName}>{item.name}</Text>
+        <View style={styles.footerSection}>
+          <Text style={styles.footerSectionText}><AntDesign name="star" size={20} color="green" /> {item.rating}</Text>
+          <Pressable onPress={()=> !isInWishList ? addToWishList(item) : removeFromWishList(item)}>
+            <AntDesign name={isInWishList ? "heart" : "hearto"} size={24} color={isInWishList ? "red" : "white"} />
+          </Pressable>
+        </View>
+      </View>
+    )
     );
   };
 
@@ -54,22 +91,36 @@ const Home = () => {
           <Text style={styles.textStyle}>Get your movies</Text>
         </View>
 
+        <View style={styles.carouselContainer}>
+              {/* <Text style={styles.popular}>Our Movies</Text> */}
+            <View style={styles.carouselWrapper}>
+              <MovieCarousel />
+            </View>
+          </View> 
+
         <View style={styles.popularContainer}>
           <Text style={styles.popular}>Popular Movies</Text>
           <View style={styles.popularMovieContainer}>
             <FlatList
               data={MovieData}
               keyExtractor={(item) => item.id}
-              renderItem={renderMovieList}
+              renderItem={renderPopularMovieList}
               horizontal={true}
               showsHorizontalScrollIndicator={false}
             />
           </View>
-          <View style={styles.carouselContainer}>
-              <Text style={styles.popular}>Our Movies</Text>
-            <View style={styles.carouselWrapper}>
-              <MovieCarousel />
-            </View>
+        </View>
+          
+          <View style={styles.popularContainer}>
+          <Text style={styles.popular}>Recent Movies</Text>
+          <View style={styles.popularMovieContainer}>
+            <FlatList
+              data={MovieData}
+              keyExtractor={(item) => item.id}
+              renderItem={renderRecentMovieList}
+              horizontal={true}
+              showsHorizontalScrollIndicator={false}
+            />
           </View>
         </View>
       </View>
@@ -116,11 +167,12 @@ const styles = StyleSheet.create({
   },
   popularMovieImage: {
     width: 100,
-    height: 140,
+    height: 150,
     marginHorizontal: 10,
     borderRadius: 10,
   },
   popularMovieName: {
+    height:50,
     color: 'white',
     fontWeight: '400',
     fontSize: 15,
@@ -133,6 +185,16 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   carouselContainer:{
-    marginTop:30,
+    marginVertical:30,
+  },
+  footerSection:{
+    width:"80%",
+    flexDirection:"row",
+    justifyContent:"space-between",
+    alignItems:"center"
+  },
+  footerSectionText:{
+    color:"gray"
   }
+  
 });

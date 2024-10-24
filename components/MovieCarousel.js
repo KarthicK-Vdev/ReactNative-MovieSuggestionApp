@@ -11,7 +11,7 @@ const MovieCarousel = () => {
       <Carousel
         loop
         width={width * 0.7} // Slightly smaller width
-        height={height * 0.4}
+        height={height * 0.43}
         autoPlay={true}
         autoPlayInterval={2000}
         data={MovieData}

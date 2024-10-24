@@ -1,11 +1,11 @@
 export const GenreData = [
     {
         id: 1,
-        genre: "SuperHeroes"
+        genre: "SuperHero"
     },
     {
         id: 2,
-        genre: "Science Fiction"
+        genre: "Sci-fi"
     },
     {
         id: 3,
