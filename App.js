@@ -10,6 +10,7 @@ import store from './store/slice';
 import WishList from './screens/WishList';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import AllMovies from './screens/AllMovies';
+import Foundation from '@expo/vector-icons/Foundation';
 
 const Drawer = createDrawerNavigator();
 const Stack = createNativeStackNavigator();
@@ -53,12 +54,26 @@ export default function App() {
           name="home" 
           component={Home} 
           options={{
-            title:"Pick A Flick"
+            title:"Pick A Flick",
+            
           }}
           />
-          <Drawer.Screen name='Genre' component={GenreSection} />
-          <Drawer.Screen name='WishList' component={WishList} />
-          <Drawer.Screen name='AllMovies' component={AllMovies} />
+          <Drawer.Screen name='Genre' 
+          component={GenreSection}
+           />
+          <Drawer.Screen 
+          name='WishList' 
+          component={WishList}
+          options={{
+            title:"Watch List"
+          }}
+          />
+          <Drawer.Screen name='AllMovies' 
+          component={AllMovies} 
+          options={{
+            title:"All Movies"
+          }}
+          />
         </Drawer.Navigator>
       </NavigationContainer>
     </Provider>

@@ -114,7 +114,7 @@ export const MovieData = [
       {
         id: 15,
         name: "Dune",
-        image: "https://resizing.flixster.com/9cA15MFFCoFW0NPFlVue7pVHF0Q=/206x305/v2/https://resizing.flixster.com/gcRn4_emLo1Iz5ndbvUOKDYq35c=/ems.cHJkLWVtcy1hc3NldHMvbW92aWVzLzBjMjk1MTU4LTQ2YTctNDA3Zi1iNDg4LTExMWQzY2ZlZTdkMi53ZWJw",
+        image: "https://resizing.flixster.com/9cA15MFFCoFW0NPFlVue7pVHF0Q=/206x305/v2/https://resizing.flixster.com/gcRn4_emLo1Iz5ndbvUOKDYq35c=/ems.cHJkLWVtcy1hc3NldHMvbW92aWVzLzdhYTI2NDJkLTU5YTYtNDNkOS05ZWQxLWZiNjFlOTZmYjZlZS5qcGc=",
         genre: "Sci-fi",
         section: "recent",
         rating: 4.7
@@ -154,7 +154,7 @@ export const MovieData = [
       {
         id: 21,
         name: "The Hangover",
-        image: "https://resizing.flixster.com/YMO66Chtqtx4XOu-l_nvf1bEARk=/fit-in/80x126/v2/https://resizing.flixster.com/-XZAfHZM39UwaGJIFWKAE8fS0ak=/v3/t/assets/p192248_p_v13_ac.jpg",
+        image: "https://resizing.flixster.com/H5oIhJ45kBGJNtR0ZBWrKq6zPFg=/206x305/v2/https://resizing.flixster.com/-XZAfHZM39UwaGJIFWKAE8fS0ak=/v3/t/assets/p192248_p_v13_ac.jpg",
         genre: "Comedy",
         section: "popular",
         rating: 4.2
@@ -241,8 +241,8 @@ export const MovieData = [
       },
       {
         id: 32,
-        name: "Naayagan",
-        image: "https://resizing.flixster.com/LpS0ZqsdORzIDL-PjrcQTL2QEJU=/206x305/v2/https://resizing.flixster.com/-XZAfHZM39UwaGJIFWKAE8fS0ak=/v3/t/assets/p11820517_p_v8_aa.jpg",
+        name: "Nayakan",
+        image: "https://resizing.flixster.com/LpS0ZqsdORzIDL-PjrcQTL2QEJU=/206x305/v2/https://resizing.flixster.com/-XZAfHZM39UwaGJIFWKAE8fS0ak=/v3/t/assets/p14790273_p_v8_ab.jpg",
         genre: "Drama",
         section: "recent",
         rating: 4.9
